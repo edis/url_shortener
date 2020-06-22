@@ -1,21 +1,29 @@
 import ssl
 from flask import Flask, render_template, request, redirect
 from flask_pymongo import pymongo
+from gen_slug import base62_slug
 
 app = Flask(__name__, template_folder='templates')
 
-client = pymongo.MongoClient("mongodb+srv://dbAdmin:ZUYONlfCtQC5WiBu@cluster0-d16zl.mongodb.net/url-shortener?retryWrites=true&w=majority", ssl_cert_reqs=ssl.CERT_NONE)
-db = client["urls-shortener"]
+client = pymongo.MongoClient("mongodb+srv://dbAdmin:ZUYONlfCtQC5WiBu@cluster0-d16zl.mongodb.net/urls-redirects?retryWrites=true&w=majority", ssl_cert_reqs=ssl.CERT_NONE)
+db = client["urls-redirects"]
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        # TODO: add url to database and return shortened url (shortening logic)
         url = request.form['init-url']
-        col = db["abc"]
+
+        # TODO: implement counter
+
+        slug = base62_slug(100000000001)
+
+        col = db[slug]
         url_dict = {"url": url}
         col.insert(url_dict)
+
+        # TODO: render page with url
+
     return render_template('index.html')
 
 

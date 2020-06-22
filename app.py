@@ -2,10 +2,13 @@ import ssl
 from flask import Flask, render_template, request, redirect
 from flask_pymongo import pymongo
 from gen_slug import base62_slug
+from secrets import MONGO_DB_PASSWORD
 
 app = Flask(__name__, template_folder='templates')
 
-client = pymongo.MongoClient("mongodb+srv://dbAdmin:ZUYONlfCtQC5WiBu@cluster0-d16zl.mongodb.net/urls-redirects?retryWrites=true&w=majority", ssl_cert_reqs=ssl.CERT_NONE)
+client = pymongo.MongoClient(f"mongodb+srv://dbAdmin:{MONGO_DB_PASSWORD}@cluster0-d16zl.mongodb.net/urls-redirects"
+                             f"?retryWrites=true&w=majority", ssl_cert_reqs=ssl.CERT_NONE)
+
 db = client["urls-redirects"]
 
 
@@ -16,7 +19,7 @@ def index():
 
         # TODO: implement counter
 
-        slug = base62_slug(100000000001)
+        slug = base62_slug(100000000002)
 
         col = db[slug]
         url_dict = {"url": url}

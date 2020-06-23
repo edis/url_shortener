@@ -8,7 +8,9 @@ load_dotenv()
 
 app = Flask(__name__, template_folder='templates')
 
-client = pymongo.MongoClient(f"mongodb+srv://{os.getenv('MONGO_DB_USER')}:{os.getenv('MONGO_DB_PASSWORD')}@{os.getenv('CLUSTER_NAME')}.mongodb.net/urls-redirects?retryWrites=true&w=majority", ssl_cert_reqs=ssl.CERT_NONE)
+client = pymongo.MongoClient(f"mongodb+srv://{os.getenv('MONGO_DB_USER')}:{os.getenv('MONGO_DB_PASSWORD')}@"
+                             f"{os.getenv('CLUSTER_NAME')}.mongodb.net/urls-redirects?retryWrites=true&w=majority",
+                             ssl_cert_reqs=ssl.CERT_NONE)
 
 db = client["urls-redirects"]
 
@@ -18,9 +20,13 @@ def index():
     if request.method == 'POST':
         url = request.form['init-url']
 
-        # TODO: implement counter
+        # TODO: factor counter and document logic
 
-        slug = base62_slug(100000000002)
+        counter_db = client["counter"]["counter"]
+        counter_num = counter_db.find_one()["counter"]
+
+        slug = base62_slug(counter_num)
+        counter_db.update_one({"counter": counter_num}, {"$set": {"counter":  counter_num + 1}})
 
         col = db[slug]
         url_dict = {"url": url}

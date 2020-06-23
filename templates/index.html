@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}" />
+</head>
+<body>
+
+    <h1>URL Shortener</h1>
+
+    <form action="/" method="POST">
+        <input type="url" name="init-url" id="init-url" required>
+        <input type="submit" value="Generate">
+    </form>
+
+</body>
+</html>

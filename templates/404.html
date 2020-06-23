@@ -1,0 +1,14 @@
+
+{% extends 'base.html' %}
+
+{% block link %}
+    <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/man-shrugging_1f937-200d-2642-fe0f.png">
+{% endblock %}
+
+<h1>{% block title %}404 - Page Not Found{% endblock %}</h1>
+
+{% block content %}
+    <h1>Oops - Page Not Found</h1>
+    <a class="shorten_link" href="{{ url_for('index') }}">< Go Shorten a URL</a>
+{% endblock %}
+

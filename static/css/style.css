@@ -1,3 +1,59 @@
-html{
-    font-family: "Courier New", sans-serif;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body{
+    font-family: "Courier New", sans-serif;
+    text-align: center;
+    background-image: linear-gradient(to right, #4AC29A, #BDFFF3);
+    color: #000000;
+}
+
+input{
+    outline: none;
+}
+
+#container{
+    height: 100vh;
+    display: flex;
+}
+
+#container-content{
+    margin: auto;
+}
+
+.main-header{
+    font-size: 3rem;
+    margin-bottom: 0.25rem;
+}
+.main-paragraph{
+    font-size: 1.25rem;
+}
+
+.shorten_link{
+    margin-top: 2rem;
+    font-size: 1.25rem;
+}
+
+#init-url{
+    display: inline-block;
+    background: transparent;
+    border: none;
+    border-bottom: #000000 3px solid;
+    margin-top: 1.5rem;
+    font-family: "Courier New", sans-serif;
+    font-size: 2rem;
+    text-align: center;
+}
+
+#generate{
+    display: block;
+    font-family: "Courier New", sans-serif;
+    font-size: 1.5rem;
+    margin: 1rem auto;
+    width: 60%;
+    cursor: pointer;
+}
+

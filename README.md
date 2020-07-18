@@ -1,7 +1,6 @@
 # url_shortener
 
 A Fast and Easy URL Shortener 🔗<br/>
-**Still in Development - Not up and running**
 
 ## Running
 To run the site on localhost port 5000, run the command below in your terminal 

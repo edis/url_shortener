@@ -8,7 +8,7 @@ load_dotenv()
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
-client = pymongo.MongoClient(f"mongodb+srv://{os.getenv('MONGO_DB_USER')}:{os.getenv('MONGO_DB_PASSWORD')}@"
+client = pymongo.MongoClient(f"mongodb://{os.getenv('MONGO_DB_USER')}:{os.getenv('MONGO_DB_PASSWORD')}@"
                              f"{os.getenv('CLUSTER_NAME')}.mongodb.net/urls-redirects?retryWrites=true&w=majority",
                              ssl_cert_reqs=ssl.CERT_NONE)
 
